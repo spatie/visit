@@ -1,5 +1,10 @@
-/vendor
-/.idea
-/.vscode
-/.vagrant
+.idea
+.php_cs
+.php_cs.cache
 .phpunit.result.cache
+build
+coverage
+phpunit.xml
+psalm.xml
+vendor
+.php-cs-fixer.cache

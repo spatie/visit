@@ -1,0 +1,14 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 8
+    paths:
+        - app
+        - config
+    excludePaths:
+        - app/Support/GitHub/Enums
+    tmpDir: build/phpstan
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: false
+

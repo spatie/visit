@@ -1,18 +1,15 @@
 {
-    "name": "laravel-zero/laravel-zero",
-    "description": "The Laravel Zero Framework.",
-    "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
-    "homepage": "https://laravel-zero.com",
+    "name": "spatie/visit",
+    "description": "Visit any URL and get its output in a beautiful way.",
+    "keywords": ["visit", "url", "debugging", "curl"],
+    "homepage": "https://github.com/spatie/visit",
     "type": "project",
     "license": "MIT",
-    "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
-    },
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -36,10 +33,19 @@
             "Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "build": "php actions-watcher app:build actions-watcher",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true,
+        "platform": {
+            "php": "8.0.2"
+        },
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }

@@ -1,0 +1,57 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot cast Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View to string\\.$#"
+			count: 1
+			path: app/Commands/Command.php
+
+		-
+			message: "#^Parameter \\#1 \\$html of function Termwind\\\\render expects string, Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View given\\.$#"
+			count: 1
+			path: app/Commands/Command.php
+
+		-
+			message: "#^Parameter \\#1 \\$html of function Termwind\\\\render expects string, Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View given\\.$#"
+			count: 1
+			path: app/Commands/LoginCommand.php
+
+		-
+			message: "#^Cannot cast non\\-empty\\-array\\|non\\-empty\\-string\\|true to string\\.$#"
+			count: 2
+			path: app/Commands/WatchCommand.php
+
+		-
+			message: "#^Method App\\\\Commands\\\\WatchCommand\\:\\:displayWorkflows\\(\\) return type has no value type specified in iterable type App\\\\Support\\\\GitHub\\\\Entities\\\\WorkflowRunCollection\\.$#"
+			count: 1
+			path: app/Commands/WatchCommand.php
+
+		-
+			message: "#^Method App\\\\Commands\\\\WatchCommand\\:\\:shouldContinueWatching\\(\\) has parameter \\$workflowRuns with no value type specified in iterable type App\\\\Support\\\\GitHub\\\\Entities\\\\WorkflowRunCollection\\.$#"
+			count: 1
+			path: app/Commands/WatchCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$html of function Termwind\\\\render expects string, Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View given\\.$#"
+			count: 1
+			path: app/Commands/WatchCommand.php
+
+		-
+			message: "#^Method App\\\\Support\\\\ConfigRepository\\:\\:__get\\(\\) should return string\\|null but returns array\\|string\\|null\\.$#"
+			count: 1
+			path: app/Support/ConfigRepository.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:unique\\(\\) expects \\(callable\\(mixed, \\(int\\|string\\)\\)\\: bool\\)\\|string\\|null, Closure\\(App\\\\Support\\\\GitHub\\\\Entities\\\\WorkflowRun\\)\\: string given\\.$#"
+			count: 1
+			path: app/Support/GitHub/GitHub.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 1
+			path: app/Support/GitHub/GitHub.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 1
+			path: app/Support/GitHub/GitHub.php
+
