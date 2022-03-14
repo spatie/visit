@@ -1,4 +1,5 @@
 {
+    "exclude-dev-files": false,
     "chmod": "0755",
     "directories": [
         "app",

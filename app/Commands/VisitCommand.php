@@ -38,8 +38,6 @@ class VisitCommand extends Command
 
     public function handle()
     {
-        echo 'resources' . resource_path('views');
-
         if ($this->shouldBeHandledByLaravelVisit()) {
             $result = $this->delegateToLaravelVisit();
 
