@@ -13,7 +13,6 @@ use App\Stats\StatResult;
 use App\Stats\StatsCollection;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use LaravelZero\Framework\Commands\Command;
 use Soundasleep\Html2Text;
