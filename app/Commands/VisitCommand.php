@@ -8,16 +8,13 @@ use App\Exceptions\NoUrlSpecified;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Illuminate\Testing\TestResponse;
 use LaravelZero\Framework\Commands\Command;
 use Soundasleep\Html2Text;
-use App\Client;
 use App\Colorizers\Colorizer;
 use App\Colorizers\DummyColorizer;
 use App\Filters\DummyFilter;
 use App\Filters\Filter;
 use App\Stats\StatResult;
-use App\Stats\StatsCollection;
 use Symfony\Component\Process\Process;
 use function Termwind\{render};
 
