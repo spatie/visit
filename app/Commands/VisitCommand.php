@@ -10,6 +10,7 @@ use App\Exceptions\NoUrlSpecified;
 use App\Filters\DummyFilter;
 use App\Filters\Filter;
 use App\Stats\StatResult;
+use App\Stats\StatsCollection;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -92,23 +93,18 @@ class VisitCommand extends Command
 
         $url = $this->getUrl();
 
-        /*
         $stats = StatsCollection::fromConfig();
 
-        $stats->callBeforeRequest($application);
-        */
+        $stats->callBeforeRequest();
 
         $response = $method === 'get'
             ? Http::$method($url)
             : Http::$method($url, $this->getPayload());
 
-        /*
-        $stats->callAfterRequest($application);
+
+        $stats->callAfterRequest();
 
         $statResults = $stats->getResults();
-        */
-
-        $statResults = [];
 
         return compact('response', 'statResults');
     }

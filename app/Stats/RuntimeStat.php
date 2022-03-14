@@ -17,12 +17,12 @@ class RuntimeStat extends Stat
         $this->stopwatch = new Stopwatch(true);
     }
 
-    public function beforeRequest(Application $app)
+    public function beforeRequest()
     {
         $this->stopwatch->start('default');
     }
 
-    public function afterRequest(Application $app)
+    public function afterRequest()
     {
         $this->stopwatchEvent = $this->stopwatch->stop('default');
     }

@@ -23,17 +23,17 @@ class StatsCollection
     ) {
     }
 
-    public function callBeforeRequest(Application $app)
+    public function callBeforeRequest()
     {
         foreach ($this->stats as $stat) {
-            $stat->beforeRequest($app);
+            $stat->beforeRequest();
         }
     }
 
-    public function callAfterRequest(Application $app)
+    public function callAfterRequest()
     {
         foreach ($this->stats as $stat) {
-            $stat->afterRequest($app);
+            $stat->afterRequest();
         }
     }
 

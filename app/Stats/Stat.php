@@ -6,11 +6,11 @@ use Illuminate\Contracts\Foundation\Application;
 
 abstract class Stat
 {
-    public function beforeRequest(Application $app)
+    public function beforeRequest()
     {
     }
 
-    public function afterRequest(Application $app)
+    public function afterRequest()
     {
     }
 
