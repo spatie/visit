@@ -44,6 +44,14 @@ By default, the `visit` command will make GET request. To use a different HTTP v
 visit <your-url> --method=delete
 ```
 
+### Following redirects
+
+By default, the `visit` command will not follow redirects. To follow redirects and display the response of the redirection target, add the `--follow-redirects` option.
+
+```bash
+php artisan visit /my-page --follow-redirects
+```
+
 ### Passing a payload
 
 You can pass a payload to non-GET request by using the payload. The payload should be formatted as JSON.

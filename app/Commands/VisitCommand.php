@@ -11,6 +11,7 @@ use App\Filters\DummyFilter;
 use App\Filters\Filter;
 use App\Stats\StatResult;
 use App\Stats\StatsCollection;
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
@@ -29,6 +30,7 @@ class VisitCommand extends Command
             {--user=}
             {--show-exception}
             {--headers}
+            {--follow-redirects}
             {--no-color}
             {--text}
             {--only-response}
@@ -97,10 +99,15 @@ class VisitCommand extends Command
 
         $stats->callBeforeRequest();
 
-        $response = $method === 'get'
-            ? Http::$method($url)
-            : Http::$method($url, $this->getPayload());
+        $request = app(PendingRequest::class);
 
+        if (! $this->option('follow-redirects')) {
+            $request->withoutRedirecting();
+        }
+
+        $response = $method === 'get'
+            ? $request->$method($url)
+            : $request->$method($url, $this->getPayload());
 
         $stats->callAfterRequest();
 
@@ -166,12 +173,19 @@ class VisitCommand extends Command
      */
     protected function renderStats(Response $response, array $statResults): self
     {
+        $redirectingTo = '';
+
+        if ($response->redirect() && $response->header('location')) {
+            $redirectingTo = $response->header('location');
+        }
+
         $requestPropertiesView = view('stats', [
             'method' => $this->option('method'),
             'url' => $this->getUrl(),
             'statusCode' => $response->getStatusCode(),
             'content' => $response->body(),
             'headers' => $response->headers(),
+            'redirectingTo' => $redirectingTo,
             'showHeaders' => $this->option('headers'),
             'headerStyle' => $this->getHeaderStyle($response),
             'statResults' => $statResults,

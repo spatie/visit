@@ -9,6 +9,11 @@
             {{ $statusCode }}
         </span>
     </div>
+    @if($redirectingTo)
+        <div class="w-full {{ $headerStyle }} px-2 max-w-100">
+            <span class="font-bold text-gray capitalize">Redirecting to:</span> {{ $redirectingTo }}
+        </div>
+    @endif
     @if (count($statResults))
         <div class="w-full {{ $headerStyle }} px-2 max-w-100">
             @foreach ($statResults as $statResult)
