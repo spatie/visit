@@ -13,7 +13,10 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.0"
+
+    },
+    "require-dev": {
         "guzzlehttp/guzzle": "^7.4",
         "illuminate/http": "^9.4",
         "illuminate/view": "^9.4",
@@ -21,9 +24,7 @@
         "soundasleep/html2text": "^2.0",
         "symfony/css-selector": "^6.0",
         "symfony/dom-crawler": "^6.0",
-        "symfony/stopwatch": "^6.0"
-    },
-    "require-dev": {
+        "symfony/stopwatch": "^6.0",
         "laravel-zero/framework": "^9.0",
         "mockery/mockery": "^1.4.4",
         "pestphp/pest": "^1.21.1"
