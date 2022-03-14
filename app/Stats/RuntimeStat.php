@@ -2,7 +2,6 @@
 
 namespace App\Stats;
 
-use Illuminate\Contracts\Foundation\Application;
 use Symfony\Component\Stopwatch\Stopwatch;
 use Symfony\Component\Stopwatch\StopwatchEvent;
 

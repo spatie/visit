@@ -2,8 +2,6 @@
 
 namespace App\Stats;
 
-use Illuminate\Contracts\Foundation\Application;
-
 class StatsCollection
 {
     public static function fromConfig(): self
