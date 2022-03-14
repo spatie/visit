@@ -3,16 +3,16 @@
 
 # Display the response of any URL
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-visit.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-visit)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-visit/run-tests?label=tests)](https://github.com/spatie/laravel-visit/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-visit/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/laravel-visit/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-visit.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-visit)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/visit.svg?style=flat-square)](https://packagist.org/packages/spatie/visit)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/visit/run-tests?label=tests)](https://github.com/spatie/visit/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/visit/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/visit/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/visit.svg?style=flat-square)](https://packagist.org/packages/spatie/visit)
 
 This tool can display the response of any URL. Think of it as `curl` for humans. By default, the output will be colorized, and the response code and response time will be displayed.
 
 ## Support us
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-visit.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-visit)
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/visit.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/visit)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -68,7 +68,7 @@ By default, `visit`  will not show any headers. To display them, add the `--head
 visit <your-url> /my-page --headers
 ```
 
-![screenshot](https://spatie.github.io/laravel-visit/images/headers.png)
+![screenshot](https://spatie.github.io/visit/images/headers.png)
 
 ### Only displaying the response
 
