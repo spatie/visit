@@ -1,5 +1,5 @@
 <?php
 
-it('can visit a URL', function() {
-     $this->artisan('visit https://spatie.be');
+it('can visit a URL', function () {
+    $this->artisan('visit https://spatie.be');
 });
