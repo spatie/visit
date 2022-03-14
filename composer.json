@@ -42,7 +42,7 @@
     },
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",
-        "build": "php actions-watcher app:build actions-watcher",
+        "build": "php visit app:build visit",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage"
     },
