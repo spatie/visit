@@ -2,22 +2,20 @@
 
 namespace App\Commands;
 
+use App\Colorizers\Colorizer;
+use App\Colorizers\DummyColorizer;
 use App\Exceptions\InvalidMethod;
 use App\Exceptions\InvalidPayload;
 use App\Exceptions\NoUrlSpecified;
-use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
-use Illuminate\Testing\TestResponse;
-use LaravelZero\Framework\Commands\Command;
-use Soundasleep\Html2Text;
-use App\Client;
-use App\Colorizers\Colorizer;
-use App\Colorizers\DummyColorizer;
 use App\Filters\DummyFilter;
 use App\Filters\Filter;
 use App\Stats\StatResult;
 use App\Stats\StatsCollection;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
+use LaravelZero\Framework\Commands\Command;
+use Soundasleep\Html2Text;
 use Symfony\Component\Process\Process;
 use function Termwind\{render};
 
@@ -37,7 +35,6 @@ class VisitCommand extends Command
             {--only-stats}
             {--filter=}
         ';
-
 
     public function handle()
     {
@@ -219,7 +216,6 @@ class VisitCommand extends Command
         return $filter ?? new DummyFilter();
     }
 
-
     protected function getMethod(): string
     {
         $method = strtolower($this->option('method'));
@@ -279,7 +275,7 @@ class VisitCommand extends Command
 
         $url = $this->argument('url');
 
-        if (!Str::startsWith($url, ['https://', 'https://'])) {
+        if (! Str::startsWith($url, ['https://', 'https://'])) {
             return true;
         }
 
