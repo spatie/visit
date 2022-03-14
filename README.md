@@ -1,39 +1,178 @@
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
 
-<p align="center">
-    <img title="Laravel Zero" height="100" src="https://raw.githubusercontent.com/laravel-zero/docs/master/images/logo/laravel-zero-readme.png" />
-</p>
+# Display the response of any URL
 
-<p align="center">
-  <a href="https://github.com/laravel-zero/framework/actions"><img src="https://img.shields.io/github/workflow/status/laravel-zero/framework/Tests.svg" alt="Build Status"></img></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/dt/laravel-zero/framework.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/v/laravel-zero/framework.svg?label=stable" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://img.shields.io/packagist/l/laravel-zero/framework.svg" alt="License"></a>
-</p>
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-visit.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-visit)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-visit/run-tests?label=tests)](https://github.com/spatie/laravel-visit/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/laravel-visit/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/laravel-visit/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-visit.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-visit)
 
-<h4> <center>This is a <bold>community project</bold> and not an official Laravel one </center></h4>
+This tool can display the response of any URL. Think of it as `curl` for humans. By default, the output will be colorized, and the response code and response time will be displayed.
 
-Laravel Zero was created by [Nuno Maduro](https://github.com/nunomaduro) and [Owen Voke](https://github.com/owenvoke), and is a micro-framework that provides an elegant starting point for your console application. It is an **unofficial** and customized version of Laravel optimized for building command-line applications.
+## Support us
 
-- Built on top of the [Laravel](https://laravel.com) components.
-- Optional installation of Laravel [Eloquent](https://laravel-zero.com/docs/database/), Laravel [Logging](https://laravel-zero.com/docs/logging/) and many others.
-- Supports interactive [menus](https://laravel-zero.com/docs/build-interactive-menus/) and [desktop notifications](https://laravel-zero.com/docs/send-desktop-notifications/) on Linux, Windows & MacOS.
-- Ships with a [Scheduler](https://laravel-zero.com/docs/task-scheduling/) and  a [Standalone Compiler](https://laravel-zero.com/docs/build-a-standalone-application/).
-- Integration with [Collision](https://github.com/nunomaduro/collision) - Beautiful error reporting
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-visit.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-visit)
 
-------
+We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
-## Documentation
+We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
-For full documentation, visit [laravel-zero.com](https://laravel-zero.com/).
+## Installation
 
-## Support the development
-**Do you like this project? Support it by donating**
+You can install the package via composer:
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L)
-- Patreon: [Donate](https://www.patreon.com/nunomaduro)
+```bash
+brew install visit-cli
+```
+
+## Usage
+
+To visit a certain page, execute `visit` followed by a URL.
+
+```bash
+visit spatie.be
+```
+
+![screenshot](https://spatie.github.io/visit/images/html.png)
+
+### Using a different method
+
+By default, the `visit` command will make GET request. To use a different HTTP verb, you can pass it to the `method` option.
+
+```bash
+visit <your-url> --method=delete
+```
+
+### Passing a payload
+
+You can pass a payload to non-GET request by using the payload. The payload should be formatted as JSON.
+
+```bash
+visit <your-url> --method=post --payload='{"testKey":"testValue"}'
+```
+
+### Showing the headers of the response
+
+By default, `visit`  will not show any headers. To display them, add the `--headers` option
+
+```bash
+visit <your-url> /my-page --headers
+```
+
+![screenshot](https://spatie.github.io/laravel-visit/images/headers.png)
+
+### Only displaying the response
+
+If you want `visit` to only display the response, omitting the response result block at the end, pass the `--only-response` option.
+
+```bash
+visit <your-url> --only-response
+```
+
+### Only displaying the response properties block
+
+To avoid displaying the response, and only display the response result block, use the `--only-stats` option
+
+```bash
+visit <your-url> --only-stats
+```
+
+### Avoid colorizing the response
+
+`visit` will automatically colorize any HTML and JSON output. To avoid the output being colorized, use the `--no-color` option.
+
+```bash
+visit <your-url> --no-color
+```
+
+### Displaying the result HTML as text
+
+Usually an HTML response is quite lengthy. This can make it hard to quickly see what text will be displayed in the browser. To convert an HTML to a text variant, you can pass the `--text` option.
+
+```bash
+visit <your-url> --text
+```
+
+### Filtering HTML output
+
+If you only want to see a part of an HTML response you can use the `--filter` option. For HTML output, you can pass [a css selector](https://www.w3schools.com/cssref/css_selectors.asp).
+
+Imagine that your app's full response is this HTML:
+
+```html
+<html>
+    <body>
+        <div>First div</div>
+        <p>First paragraph</p>
+        <p>Second paragraph</p>
+    </body>
+</html>
+```
+
+This command ...
+
+```bash
+visit <your-url> --filter="p"
+```
+
+... will display:
+
+```html
+<p>First paragraph</p>
+<p>Second paragraph</p>
+```
+
+### Filtering JSON output
+
+If you only want to see a part of an JSON response you can use the `--filter` option. You may use dot-notation to reach nested parts.
+
+Imagine that your app's full response is this JSON:
+
+```json
+{
+    "firstName": "firstValue",
+    "nested": {
+        "secondName": "secondValue"
+    }
+}
+```
+
+This command ...
+
+```bash
+visit <your-url> --filter="nested.secondName"
+```
+
+... will display:
+
+```html
+secondValue
+```
+
+## Testing
+
+```bash
+composer test
+```
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+
+## Contributing
+
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+
+## Security Vulnerabilities
+
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+
+## Credits
+
+- [Freek Van der Herten](https://github.com/freekmurze)
+- [All Contributors](../../contributors)
 
 ## License
 
-Laravel Zero is an open-source software licensed under the MIT license.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
