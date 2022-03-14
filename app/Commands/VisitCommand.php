@@ -13,7 +13,6 @@ use App\Stats\StatResult;
 use App\Stats\StatsCollection;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Str;
 use LaravelZero\Framework\Commands\Command;
 use Soundasleep\Html2Text;
 use Symfony\Component\Process\Process;
@@ -239,12 +238,12 @@ class VisitCommand extends Command
 
     protected function getUrl(): string
     {
-        if ($routeName = $this->option('route')) {
-            return route($routeName, absolute: false);
-        }
-
         if ($url = $this->argument('url')) {
             return $url;
+        }
+
+        if (! str_starts_with($url, 'http')) {
+            return "https://{$url}";
         }
 
         throw NoUrlSpecified::make();
@@ -283,7 +282,13 @@ class VisitCommand extends Command
 
         $url = $this->argument('url');
 
-        if (! Str::startsWith($url, ['https://', 'https://'])) {
+        if (str_starts_with($url, '/')) {
+            return true;
+        }
+
+        $firstSegment = explode('/', $url)[0];
+
+        if (! str_contains($firstSegment, '.')) {
             return true;
         }
 
