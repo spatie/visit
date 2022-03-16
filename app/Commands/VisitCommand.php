@@ -63,6 +63,7 @@ class VisitCommand extends Command
 
             if (method_exists($exception, 'render')) {
                 $exception->render();
+
                 return;
             }
 

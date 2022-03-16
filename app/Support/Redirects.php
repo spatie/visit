@@ -18,7 +18,7 @@ class Redirects
 
         $this->redirects[] = ['from' => $redirectHistory[0]['url']];
 
-        foreach($redirectHistory as $redirectHistoryItem) {
+        foreach ($redirectHistory as $redirectHistoryItem) {
             $this->add($redirectHistoryItem);
         }
     }
