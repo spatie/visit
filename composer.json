@@ -13,8 +13,8 @@
         }
     ],
     "require": {
-        "php": "^8.0"
-
+        "php": "^8.0",
+        "spatie/guzzle-redirect-history-middleware": "^1.0"
     },
     "require-dev": {
         "guzzlehttp/guzzle": "^7.4",

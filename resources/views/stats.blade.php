@@ -31,4 +31,20 @@
             </div>
         @endforeach
     @endif
+
+    @if(count($redirects))
+        <div class="underline mt-1">Redirects:</div>
+        @foreach ($redirects as $redirect)
+            @if(! $loop->first)
+                <br />
+            @endif
+            <div>
+                <span class="font-bold text-gray">
+                {{ $redirect['status'] }} {{ $redirect['from'] }}
+                </span>
+                <br/>
+                <span>-><span>️ {{ $redirect['to'] }}
+            </div>
+        @endforeach
+    @endif
 </div>

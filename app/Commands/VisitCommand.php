@@ -11,10 +11,14 @@ use App\Filters\DummyFilter;
 use App\Filters\Filter;
 use App\Stats\StatResult;
 use App\Stats\StatsCollection;
+use App\Support\Redirects;
+use Exception;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use LaravelZero\Framework\Commands\Command;
 use Soundasleep\Html2Text;
+use Spatie\GuzzleRedirectHistoryMiddleware\RedirectHistory;
+use Spatie\GuzzleRedirectHistoryMiddleware\RedirectHistoryMiddleware;
 use Symfony\Component\Process\Process;
 use function Termwind\{render};
 
@@ -38,21 +42,32 @@ class VisitCommand extends Command
 
     public function handle()
     {
-        if ($this->shouldBeHandledByLaravelVisit()) {
-            $result = $this->delegateToLaravelVisit();
+        try {
+            if ($this->shouldBeHandledByLaravelVisit()) {
+                $result = $this->delegateToLaravelVisit();
 
-            return $result
+                return $result
+                    ? self::SUCCESS
+                    : self::FAILURE;
+            }
+
+            ['response' => $response, 'statResults' => $statResults, 'redirects' => $redirects] = $this->makeRequest();
+
+            $this->renderResponse($response, $statResults, $redirects);
+
+            return $response->successful() || $response->redirect()
                 ? self::SUCCESS
                 : self::FAILURE;
+        } catch (Exception $exception) {
+            throw $exception;
+
+            if (method_exists($exception, 'render')) {
+                $exception->render();
+                return;
+            }
+
+            throw $exception;
         }
-
-        ['response' => $response, 'statResults' => $statResults] = $this->makeRequest();
-
-        $this->renderResponse($response, $statResults);
-
-        return $response->successful() || $response->redirect()
-            ? self::SUCCESS
-            : self::FAILURE;
     }
 
     protected function laravelVisitIsAvailable(): bool
@@ -86,7 +101,7 @@ class VisitCommand extends Command
         return $process->isSuccessful();
     }
 
-    /** @return array{response: Response, statResults:array<int, \App\Stats\StatResult>} */
+    /** @return array{response: Response, statResults:array<int, \App\Stats\StatResult>, redirects: Redirects} */
     protected function makeRequest(): array
     {
         $method = $this->getMethod();
@@ -98,6 +113,9 @@ class VisitCommand extends Command
         $stats->callBeforeRequest();
 
         $request = app(PendingRequest::class);
+
+        $redirectHistory = new RedirectHistory();
+        $request->withMiddleware(RedirectHistoryMiddleware::make($redirectHistory));
 
         if (! $this->option('follow-redirects')) {
             $request->withoutRedirecting();
@@ -111,23 +129,26 @@ class VisitCommand extends Command
 
         $statResults = $stats->getResults();
 
-        return compact('response', 'statResults');
+        $redirects = new Redirects($redirectHistory);
+
+        return compact('response', 'statResults', 'redirects');
     }
 
     /**
      * @param Response $response
      * @param array<int, StatResult $statResults
+     * @param Redirects $redirects
      *
      * @return \App\Commands\VisitCommand
      */
-    protected function renderResponse(Response $response, array $statResults): self
+    protected function renderResponse(Response $response, array $statResults, Redirects $redirects): self
     {
         if (! $this->option('only-stats')) {
             $this->renderContent($response);
         }
 
         if (! $this->option('only-response')) {
-            $this->renderStats($response, $statResults);
+            $this->renderStats($response, $statResults, $redirects);
         }
 
         return $this;
@@ -165,11 +186,12 @@ class VisitCommand extends Command
     /**
      * @param Response $response
      * @param array<int, StatResult> $statResults
+     * @param Redirects $redirects
      *
      * @return $this
      * @throws \App\Exceptions\NoUrlSpecified
      */
-    protected function renderStats(Response $response, array $statResults): self
+    protected function renderStats(Response $response, array $statResults, Redirects $redirects): self
     {
         $redirectingTo = '';
 
@@ -179,10 +201,11 @@ class VisitCommand extends Command
 
         $requestPropertiesView = view('stats', [
             'method' => $this->option('method'),
-            'url' => $this->getUrl(),
+            'url' => $redirects->lastTo(),
             'statusCode' => $response->getStatusCode(),
             'content' => $response->body(),
             'headers' => $response->headers(),
+            'redirects' => $redirects->all(),
             'redirectingTo' => $redirectingTo,
             'showHeaders' => $this->option('headers'),
             'headerStyle' => $this->getHeaderStyle($response),
@@ -238,15 +261,17 @@ class VisitCommand extends Command
 
     protected function getUrl(): string
     {
-        if ($url = $this->argument('url')) {
-            return $url;
+        $url = $this->argument('url');
+
+        if (! $url) {
+            throw NoUrlSpecified::make();
         }
 
         if (! str_starts_with($url, 'http')) {
-            return "https://{$url}";
+            $url = "https://{$url}";
         }
 
-        throw NoUrlSpecified::make();
+        return $url;
     }
 
     protected function getPayload(): array
