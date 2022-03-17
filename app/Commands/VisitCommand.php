@@ -62,6 +62,8 @@ class VisitCommand extends Command
         } catch (RenderableException $exception) {
             $exception->render();
         }
+
+        return self::FAILURE;
     }
 
     protected function laravelVisitIsAvailable(): bool
