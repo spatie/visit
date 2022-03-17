@@ -20,7 +20,7 @@ class Redirects
 
         unset($redirectHistory[0]);
 
-        foreach($redirectHistory as $redirectHistoryItem) {
+        foreach ($redirectHistory as $redirectHistoryItem) {
             $this->add($redirectHistoryItem);
         }
     }
