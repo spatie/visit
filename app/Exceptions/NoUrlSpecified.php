@@ -2,9 +2,7 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
-class NoUrlSpecified extends Exception
+class NoUrlSpecified extends RenderableException
 {
     public static function make(): self
     {

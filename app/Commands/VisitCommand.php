@@ -7,6 +7,7 @@ use App\Colorizers\DummyColorizer;
 use App\Exceptions\InvalidMethod;
 use App\Exceptions\InvalidPayload;
 use App\Exceptions\NoUrlSpecified;
+use App\Exceptions\RenderableException;
 use App\Filters\DummyFilter;
 use App\Filters\Filter;
 use App\Stats\StatResult;
@@ -58,15 +59,8 @@ class VisitCommand extends Command
             return $response->successful() || $response->redirect()
                 ? self::SUCCESS
                 : self::FAILURE;
-        } catch (Exception $exception) {
-            throw $exception;
-
-            if (method_exists($exception, 'render')) {
-                $exception->render();
-                return;
-            }
-
-            throw $exception;
+        } catch (RenderableException $exception) {
+            $exception->render();
         }
     }
 
@@ -74,7 +68,7 @@ class VisitCommand extends Command
     {
         $composerJson = getcwd() . '/composer.json';
 
-        if (! file_exists($composerJson)) {
+        if (!file_exists($composerJson)) {
             return false;
         }
 
@@ -117,7 +111,7 @@ class VisitCommand extends Command
         $redirectHistory = new RedirectHistory();
         $request->withMiddleware(RedirectHistoryMiddleware::make($redirectHistory));
 
-        if (! $this->option('follow-redirects')) {
+        if (!$this->option('follow-redirects')) {
             $request->withoutRedirecting();
         }
 
@@ -143,11 +137,11 @@ class VisitCommand extends Command
      */
     protected function renderResponse(Response $response, array $statResults, Redirects $redirects): self
     {
-        if (! $this->option('only-stats')) {
+        if (!$this->option('only-stats')) {
             $this->renderContent($response);
         }
 
-        if (! $this->option('only-response')) {
+        if (!$this->option('only-response')) {
             $this->renderStats($response, $statResults, $redirects);
         }
 
@@ -172,7 +166,7 @@ class VisitCommand extends Command
             return $this;
         }
 
-        if (! $this->option('no-color')) {
+        if (!$this->option('no-color')) {
             $colorizer = $this->getColorizer($response);
 
             $content = $colorizer->colorize($content);
@@ -231,8 +225,8 @@ class VisitCommand extends Command
         $contentType = $response->header('content-type');
 
         $colorizer = collect(config('visit.colorizers'))
-            ->map(fn (string $colorizerClassName) => app($colorizerClassName))
-            ->first(fn (Colorizer $colorizer) => $colorizer->canColorize($contentType));
+            ->map(fn(string $colorizerClassName) => app($colorizerClassName))
+            ->first(fn(Colorizer $colorizer) => $colorizer->canColorize($contentType));
 
         return $colorizer ?? new DummyColorizer();
     }
@@ -240,8 +234,8 @@ class VisitCommand extends Command
     protected function getFilter(Response $response, string $content): Filter
     {
         $filter = collect(config('visit.filters'))
-            ->map(fn (string $filterClassName) => app($filterClassName))
-            ->first(fn (Filter $filter) => $filter->canFilter($response, $content));
+            ->map(fn(string $filterClassName) => app($filterClassName))
+            ->first(fn(Filter $filter) => $filter->canFilter($response, $content));
 
         return $filter ?? new DummyFilter();
     }
@@ -252,7 +246,7 @@ class VisitCommand extends Command
 
         $validMethodNames = collect(['get', 'post', 'put', 'patch', 'delete']);
 
-        if (! $validMethodNames->contains($method)) {
+        if (!$validMethodNames->contains($method)) {
             throw InvalidMethod::make($method, $validMethodNames);
         }
 
@@ -263,11 +257,11 @@ class VisitCommand extends Command
     {
         $url = $this->argument('url');
 
-        if (! $url) {
+        if (!$url) {
             throw NoUrlSpecified::make();
         }
 
-        if (! str_starts_with($url, 'http')) {
+        if (!str_starts_with($url, 'http')) {
             $url = "https://{$url}";
         }
 
@@ -293,7 +287,7 @@ class VisitCommand extends Command
 
     protected function shouldBeHandledByLaravelVisit(): bool
     {
-        if (! $this->laravelVisitIsAvailable()) {
+        if (!$this->laravelVisitIsAvailable()) {
             return false;
         }
 
@@ -313,7 +307,7 @@ class VisitCommand extends Command
 
         $firstSegment = explode('/', $url)[0];
 
-        if (! str_contains($firstSegment, '.')) {
+        if (!str_contains($firstSegment, '.')) {
             return true;
         }
 

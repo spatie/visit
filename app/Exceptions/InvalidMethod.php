@@ -5,7 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Support\Collection;
 
-class InvalidMethod extends Exception
+class InvalidMethod extends RenderableException
 {
     public static function make(string $invalidMethodName, Collection $validMethodNames): self
     {
