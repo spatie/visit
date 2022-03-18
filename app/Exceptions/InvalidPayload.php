@@ -2,8 +2,6 @@
 
 namespace App\Exceptions;
 
-use Exception;
-
 class InvalidPayload extends RenderableException
 {
     public static function make(): self

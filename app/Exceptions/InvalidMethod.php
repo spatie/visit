@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-use Exception;
 use Illuminate\Support\Collection;
 
 class InvalidMethod extends RenderableException
