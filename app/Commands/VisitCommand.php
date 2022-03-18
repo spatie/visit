@@ -44,8 +44,8 @@ class VisitCommand extends Command
     public function handle()
     {
         try {
-            if ($this->shouldBeHandledByLaravelVisit()) {
-                $result = $this->delegateToLaravelVisit();
+            if ($this->shouldBeHandledWithLaravelVisit()) {
+                $result = $this->handleWithLaravelVisit();
 
                 return $result
                     ? self::SUCCESS
@@ -68,14 +68,18 @@ class VisitCommand extends Command
 
     protected function laravelVisitIsAvailable(): bool
     {
+        ray('start laravelVisitIsAvailable');
         $composerJson = getcwd() . '/composer.json';
 
         if (!file_exists($composerJson)) {
+            ray('did not find composer json')->red();
             return false;
         }
 
         foreach (['require', 'require-dev'] as $require) {
             foreach ($composer[$require] ?? [] as $package => $version) {
+                ray('found package', $package);
+
                 if ($package === 'spatie/laravel-visit') {
                     return true;
                 }
@@ -85,8 +89,9 @@ class VisitCommand extends Command
         return false;
     }
 
-    protected function delegateToLaravelVisit(): bool
+    protected function handleWithLaravelVisit(): bool
     {
+        ray('handling with laravel visit');
         $argumentsAndOptions = (string)$this->input;
 
         $process = Process::fromShellCommandline("php artisan visit {$argumentsAndOptions}");
@@ -287,7 +292,7 @@ class VisitCommand extends Command
         return $payload;
     }
 
-    protected function shouldBeHandledByLaravelVisit(): bool
+    protected function shouldBeHandledWithLaravelVisit(): bool
     {
         if (!$this->laravelVisitIsAvailable()) {
             return false;
