@@ -1,3 +1,5 @@
+**PACKAGE IS DEVELOPMENT, DO NOT USE (YET)**
+
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
 
@@ -23,7 +25,7 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 You can install the package via composer:
 
 ```bash
-brew install visit-cli
+composer global require spatie/visit
 ```
 
 ## Usage
