@@ -4,7 +4,6 @@ namespace App\Filters;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
-use Illuminate\Testing\TestResponse;
 
 class JsonFilter extends Filter
 {
