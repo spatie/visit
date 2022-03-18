@@ -68,16 +68,19 @@ class VisitCommand extends Command
     protected function laravelVisitIsAvailable(): bool
     {
         ray('start laravelVisitIsAvailable');
-        $composerJson = getcwd() . '/composer.json';
+        $composerJsonPath = getcwd() . '/composer.json';
 
-        if (! file_exists($composerJson)) {
+        if (! file_exists($composerJsonPath)) {
             ray('did not find composer json')->red();
 
             return false;
         }
 
+        $composerJsonContent = json_decode(file_get_contents($composerJsonPath), true);
+
+
         foreach (['require', 'require-dev'] as $require) {
-            foreach ($composer[$require] ?? [] as $package => $version) {
+            foreach ($composerJsonContent[$require] ?? [] as $package => $version) {
                 ray('found package', $package);
 
                 if ($package === 'spatie/laravel-visit') {
