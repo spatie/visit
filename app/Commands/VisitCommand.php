@@ -70,8 +70,9 @@ class VisitCommand extends Command
         ray('start laravelVisitIsAvailable');
         $composerJson = getcwd() . '/composer.json';
 
-        if (!file_exists($composerJson)) {
+        if (! file_exists($composerJson)) {
             ray('did not find composer json')->red();
+
             return false;
         }
 
