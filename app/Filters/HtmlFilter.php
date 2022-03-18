@@ -3,7 +3,6 @@
 namespace App\Filters;
 
 use Illuminate\Http\Client\Response;
-use Illuminate\Testing\TestResponse;
 use Symfony\Component\DomCrawler\Crawler;
 
 class HtmlFilter extends Filter
