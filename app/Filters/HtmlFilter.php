@@ -2,19 +2,20 @@
 
 namespace App\Filters;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Testing\TestResponse;
 use Symfony\Component\DomCrawler\Crawler;
 
 class HtmlFilter extends Filter
 {
-    public function canFilter(TestResponse $response, string $content): bool
+    public function canFilter(Response $response, string $content): bool
     {
-        $contentType = $response->headers->get('content-type', '');
+        $contentType = $response->header('content-type');
 
         return str_contains($contentType, 'html');
     }
 
-    public function filter(TestResponse $response, string $content, string $filter): string
+    public function filter(Response $response, string $content, string $filter): string
     {
         $filteredHtml = '';
 

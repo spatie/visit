@@ -2,14 +2,15 @@
 
 namespace App\Filters;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Testing\TestResponse;
 
 class JsonFilter extends Filter
 {
-    public function canFilter(TestResponse $response, string $content): bool
+    public function canFilter(Response $response, string $content): bool
     {
-        $contentType = $response->headers->get('content-type', '');
+        $contentType = $response->header('content-type');
 
         if (! $contentType === 'application/json') {
             return false;
@@ -18,7 +19,7 @@ class JsonFilter extends Filter
         return (bool)json_decode($content, true);
     }
 
-    public function filter(TestResponse $response, string $content, string $filter): string
+    public function filter(Response $response, string $content, string $filter): string
     {
         $contentAsArray = json_decode($content, true);
 
