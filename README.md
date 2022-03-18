@@ -20,7 +20,7 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Homebrew:
 
 ```bash
 brew install visit-cli
