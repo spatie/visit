@@ -28,7 +28,7 @@ class Server
         }
 
         $startServerCommand = '/opt/homebrew/bin/php -S '.rtrim(static::getServerUrl(), '/').' -t ./tests/Support/Server/public > /dev/null 2>&1 & echo $!';
-ray($startServerCommand);
+        ray($startServerCommand);
         $pid = exec($startServerCommand);
         while (! static::serverHasBooted()) {
             ray('waiting for boot');
