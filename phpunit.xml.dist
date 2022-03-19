@@ -11,6 +11,7 @@
     <testsuites>
         <testsuite name="Tests">
             <directory suffix="Test.php">./tests</directory>
+            <exclude>./tests/Support</exclude>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
@@ -18,4 +19,7 @@
             <directory suffix=".php">./app</directory>
         </include>
     </coverage>
+    <php>
+        <env name="TEST_SERVER_PORT" value="8282" />
+    </php>
 </phpunit>
