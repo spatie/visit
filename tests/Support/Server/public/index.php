@@ -14,7 +14,7 @@ $app->configure('app');
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) use ($app) {
-    $router->get('booted', fn() => 'app has booted');
+    $router->get('booted', fn () => 'app has booted');
 
     $configFile = __DIR__ . "/config.json";
 
