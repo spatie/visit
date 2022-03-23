@@ -1,6 +1,3 @@
-**PACKAGE IS DEVELOPMENT, DO NOT USE (YET)**
-
-
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
 
 # Display the response of any URL
@@ -11,6 +8,8 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/visit.svg?style=flat-square)](https://packagist.org/packages/spatie/visit)
 
 This tool can display the response of any URL. Think of it as `curl` for humans. By default, the output will be colorized, and the response code and response time will be displayed.
+
+![screenshot](https://spatie.github.io/visit/images/html.png)
 
 ## Support us
 
@@ -59,8 +58,16 @@ php artisan visit /my-page --follow-redirects
 You can pass a payload to non-GET request by using the payload. The payload should be formatted as JSON.
 
 ```bash
-visit <your-url> --method=post --payload='{"testKey":"testValue"}'
+visit <your-url> --payload='{"testKey":"testValue"}'
 ```
+
+When you pass a payload, we'll assume that you want to make a `POST` request. If you want to use another http verb, pass it explicitly.
+
+```php
+visit <your-url> --method=patch --payload='{"testKey":"testValue"}'
+```
+
+
 
 ### Showing the headers of the response
 
@@ -168,19 +175,25 @@ The `visit` command can also reach into a Laravel app and do stuff like:
 - visiting a route name
 - reporting the amount of queries performed and models hydrated to build up the response.
 
-To enable this, you must install [the spatie/laravel-visit package](https://github.com/spatie.visit) inside of your Laravel app.
+To enable this, you must install [the spatie/laravel-visit package](https://github.com/spatie/laravel-visit) inside your Laravel app.
 
-To visit a route in your Laravel app, make sure you execute `visit` when the current working directory is your Laravel app. You should also use a relative URL (so omit the app URL)
+To visit a route in your Laravel app, make sure you execute `visit` when the current working directory is your Laravel app. You should also use a relative URL (so omit the app URL).
 
+![screenshot](https://spatie.github.io/visit/images/relative.png)
 
-your can use these extra options:
+Your can use these extra options:
 
 - `--user`: you can pass this option a user id or email that will be logged in before rendering the response
 - `--route`: pass this option the name of a route, you don't have to specify an url anymore. For example `visit --route=contact`
 - `--show-exceptions`: when your app throws an exception, this option will show that exception.
 
+Here's an example of the `route` option:
 
+![screenshot](https://spatie.github.io/visit/images/laravel1.png)
 
+In the stats block at the end you'll see the amount of queries and models hydrated.
+
+![screenshot](https://spatie.github.io/visit/images/laravel2.png)
 
 ## Testing
 
