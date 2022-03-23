@@ -160,6 +160,28 @@ visit <your-url> --filter="nested.secondName"
 secondValue
 ```
 
+## Laravel integration
+
+The `visit` command can also reach into a Laravel app and do stuff like:
+
+- logging in a user
+- visiting a route name
+- reporting the amount of queries performed and models hydrated to build up the response.
+
+To enable this, you must install [the spatie/laravel-visit package](https://github.com/spatie.visit) inside of your Laravel app.
+
+To visit a route in your Laravel app, make sure you execute `visit` when the current working directory is your Laravel app. You should also use a relative URL (so omit the app URL)
+
+
+your can use these extra options:
+
+- `--user`: you can pass this option a user id or email that will be logged in before rendering the response
+- `--route`: pass this option the name of a route, you don't have to specify an url anymore. For example `visit --route=contact`
+- `--show-exceptions`: when your app throws an exception, this option will show that exception.
+
+
+
+
 ## Testing
 
 ```bash

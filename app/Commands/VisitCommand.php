@@ -68,17 +68,18 @@ class VisitCommand extends Command
     protected function laravelVisitIsAvailable(): bool
     {
         $composerJsonPath = getcwd() . '/composer.json';
-
+ray('composer path' . $composerJsonPath);
         if (! file_exists($composerJsonPath)) {
             return false;
         }
 
         $composerJsonContent = json_decode(file_get_contents($composerJsonPath), true);
 
-
+ray('composer content', $composerJsonContent);
         foreach (['require', 'require-dev'] as $require) {
             foreach ($composerJsonContent[$require] ?? [] as $package => $version) {
                 if ($package === 'spatie/laravel-visit') {
+                    ray('package found')->green();
                     return true;
                 }
             }
@@ -90,7 +91,7 @@ class VisitCommand extends Command
     protected function handleWithLaravelVisit(): bool
     {
         $argumentsAndOptions = (string)$this->input;
-
+ray('arguments', $argumentsAndOptions);
         $process = Process::fromShellCommandline("php artisan visit {$argumentsAndOptions}");
 
         $process->setTty(true);
@@ -291,6 +292,7 @@ class VisitCommand extends Command
 
     protected function shouldBeHandledWithLaravelVisit(): bool
     {
+        ray('starting shouldBeHandledWithLaravelVisit');
         if (! $this->laravelVisitIsAvailable()) {
             return false;
         }
