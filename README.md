@@ -10,7 +10,7 @@ This tool can display the response of any URL. Think of it as `curl` for humans.
 
 ![screenshot](https://spatie.github.io/visit/images/intro.png)
 
-JSON responses will be colourized by default as well.
+JSON responses will be colorized by default as well.
 
 ![screenshot](https://spatie.github.io/visit/images/json.png)
 
