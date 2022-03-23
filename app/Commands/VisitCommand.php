@@ -269,8 +269,8 @@ class VisitCommand extends Command
             $url = "https://{$url}";
         }
 
-        if(parse_url($url) === false) {
-           throw InvalidUrlSpecified::make();
+        if (parse_url($url) === false) {
+            throw InvalidUrlSpecified::make();
         }
 
         return $url;
