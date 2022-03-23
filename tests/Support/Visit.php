@@ -65,6 +65,4 @@ class Visit
     {
         dd($this->output);
     }
-
-
 }
