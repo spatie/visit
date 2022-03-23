@@ -4,6 +4,7 @@ namespace App\Commands;
 
 use App\Colorizers\Colorizer;
 use App\Colorizers\DummyColorizer;
+use App\Concerns\DisplaysMessages;
 use App\Exceptions\InvalidMethod;
 use App\Exceptions\InvalidPayload;
 use App\Exceptions\InvalidUrlSpecified;
@@ -25,10 +26,12 @@ use function Termwind\{render};
 
 class VisitCommand extends Command
 {
+    use DisplaysMessages;
+
     public $signature = '
         visit {url?}
             {--route=}
-            {--method=get}
+            {--method=}
             {--payload=}
             {--user=}
             {--show-exception}
@@ -43,6 +46,12 @@ class VisitCommand extends Command
 
     public function handle()
     {
+        if ($this->argument('url') === null) {
+            $this->displayMessage('Welcome to Visit by Spatie. Pass a URL to get started.');
+
+            return self::SUCCESS;
+        }
+
         try {
             if ($this->shouldBeHandledWithLaravelVisit()) {
                 $result = $this->handleWithLaravelVisit();
@@ -198,7 +207,7 @@ class VisitCommand extends Command
         }
 
         $requestPropertiesView = view('stats', [
-            'method' => $this->option('method'),
+            'method' => $this->getMethod(),
             'url' => $redirects->lastTo(),
             'statusCode' => $response->getStatusCode(),
             'content' => $response->body(),
@@ -246,7 +255,11 @@ class VisitCommand extends Command
 
     protected function getMethod(): string
     {
-        $method = strtolower($this->option('method'));
+        $defaultMethodName = $this->option('payload') ? 'post' : 'get';
+
+        $method = $this->option('method') ?? $defaultMethodName;
+
+        $method = strtolower($method);
 
         $validMethodNames = collect(['get', 'post', 'put', 'patch', 'delete']);
 

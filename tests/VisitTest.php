@@ -102,10 +102,21 @@ it('can post a json payload', function () {
     $payload = json_encode(['myKey' => 'myValue']);
 
     Visit::run("http://localhost:8282/json-payload --method=post --payload='{$payload}'")
+        ->expectSuccess()
         ->expectOutputContains(
             'POST http://localhost:8282/json',
             'myKey',
             'myValue',
+        );
+});
+
+it('will default to http method post when passing a payload', function () {
+    $payload = json_encode(['myKey' => 'myValue']);
+
+    Visit::run("http://localhost:8282/json-payload --payload='{$payload}'")
+        ->expectSuccess()
+        ->expectOutputContains(
+            'POST http://localhost:8282/json',
         );
 });
 
@@ -122,4 +133,9 @@ it('will display an error message when passing an invalid method', function() {
 it('will display an error message when passing an invalid json', function() {
     Visit::run('http://localhost:8282 --method=post --payload=invalid')
         ->expectOutputContains('You should pass valid JSON');
+});
+
+it('can display a welcome screen', function() {
+    Visit::run('')
+        ->expectSuccess();
 });
