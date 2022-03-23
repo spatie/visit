@@ -14,7 +14,6 @@ JSON responses will be colorized by default as well.
 
 ![screenshot](https://spatie.github.io/visit/images/json.png)
 
-
 ## Support us
 
 [<img src="https://github-ads.s3.eu-central-1.amazonaws.com/visit.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/visit)
