@@ -1,3 +1,3 @@
 <?php
 
-$router->get('/', fn () => 'ok');
+$router->get('/', fn () => 'this is the homepage');

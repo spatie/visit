@@ -18,7 +18,6 @@ class Server
 
     public static function boot()
     {
-        ray('boot');
         if (! file_exists(__DIR__.'/vendor')) {
             exec('cd "'.__DIR__.'"; composer install');
         }
@@ -28,10 +27,9 @@ class Server
         }
 
         $startServerCommand = '/opt/homebrew/bin/php -S '.rtrim(static::getServerUrl(), '/').' -t ./tests/Support/Server/public > /dev/null 2>&1 & echo $!';
-        ray($startServerCommand);
+
         $pid = exec($startServerCommand);
         while (! static::serverHasBooted()) {
-            ray('waiting for boot');
             sleep(1);
         }
 
@@ -58,12 +56,5 @@ class Server
         }
 
         return $result;
-    }
-
-    public static function activateRoutes(string $routeConfiguration)
-    {
-        $token = parallel_test_token();
-
-        file_put_contents(__DIR__ ."/public/config-{$token}.json", json_encode(['routes' => $routeConfiguration]));
     }
 }

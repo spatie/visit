@@ -1,5 +1,15 @@
 <?php
 
+use Tests\Support\Visit;
+
 it('can visit a URL', function () {
-    $this->artisan('visit https://spatie.be')->assertSuccessful();
+    $visit = Visit::run('http://localhost:8282');
+
+    $visit
+        ->expectSuccess()
+        ->expectOutputContains(
+            'this is the homepage',
+            'GET http://localhost:8282',
+
+        );
 });
