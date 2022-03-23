@@ -137,5 +137,6 @@ it('will display an error message when passing an invalid json', function() {
 
 it('can display a welcome screen', function() {
     Visit::run('')
-        ->expectSuccess();
+        ->expectSuccess()
+        ->expectOutputContains('Welcome');
 });
