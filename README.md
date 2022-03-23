@@ -7,9 +7,14 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/spatie/visit/Check%20&%20fix%20styling?label=code%20style)](https://github.com/spatie/visit/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/visit.svg?style=flat-square)](https://packagist.org/packages/spatie/visit)
 
-This tool can display the response of any URL. Think of it as `curl` for humans. By default, the output will be colorized, and the response code and response time will be displayed.
+This tool can display the response of any URL. Think of it as `curl` for humans. By default, the output will be colorized. The response code and response time will be displayed after the response.
 
-![screenshot](https://spatie.github.io/visit/images/html.png)
+![screenshot](https://spatie.github.io/visit/images/intro.png)
+
+JSON responses will be colourized by default as well.
+
+![screenshot](https://spatie.github.io/visit/images/json.png)
+
 
 ## Support us
 
@@ -25,6 +30,18 @@ You can install the package via composer:
 
 ```bash
 composer global require spatie/visit
+```
+
+To colorize HTML, you should install `bat`.
+
+```bash
+brew install bat
+```
+
+To colorize JSON, you should install `jq`.
+
+```bash
+brew install jq
 ```
 
 ## Usage
