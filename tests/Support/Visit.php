@@ -54,5 +54,17 @@ class Visit
         return $this;
     }
 
+    public function expectOutputNotContains(string ...$expectedSubstring): self
+    {
+        expect($this->output)->not()->toContain(...$expectedSubstring);
+
+        return $this;
+    }
+
+    public function dd()
+    {
+        dd($this->output);
+    }
+
 
 }
