@@ -95,3 +95,14 @@ it('can filter json', function () {
         )
         ->expectOutputNotContains('first', 'second', 'value2');
 });
+
+it('can post a json payload', function() {
+    $payload = json_encode(['myKey' => 'myValue']);
+
+    Visit::run("http://localhost:8282/json-payload --method=post --payload='{$payload}'")
+        ->expectOutputContains(
+            'POST http://localhost:8282/json',
+            'myKey', 'myValue',
+        );
+
+});

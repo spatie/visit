@@ -15,4 +15,9 @@ $router->get('/json',
     ])
 );
 
+$router->post('/json-payload', function () {
+        return response()->json(request()->all());
+    }
+);
+
 
