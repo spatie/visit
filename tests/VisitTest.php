@@ -108,3 +108,18 @@ it('can post a json payload', function () {
             'myValue',
         );
 });
+
+it('will display an error message when passing an invalid url', function() {
+    Visit::run('/')
+        ->expectOutputContains('You should pass a valid URL.');
+});
+
+it('will display an error message when passing an invalid method', function() {
+    Visit::run('http://localhost:8282 --method=invalid')
+        ->expectOutputContains('is not a valid method name');
+});
+
+it('will display an error message when passing an invalid json', function() {
+    Visit::run('http://localhost:8282 --method=post --payload=invalid')
+        ->expectOutputContains('You should pass valid JSON');
+});

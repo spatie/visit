@@ -12,6 +12,6 @@ class InvalidMethod extends RenderableException
             ->map(fn (string $method) => "`{$method}`")
             ->join(', ', ' and ');
 
-        return new self("`{$invalidMethodName}` is not a valid name. Valid method names are {$validMethodNames}.");
+        return new self("`{$invalidMethodName}` is not a valid method name. Valid method names are {$validMethodNames}.");
     }
 }
