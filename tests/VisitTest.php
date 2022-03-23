@@ -49,7 +49,6 @@ it('accepts the no-color option', function () {
         ->expectOutputContains(
             'GET http://localhost:8282',
             'this is the homepage',
-
         );
 });
 
@@ -66,15 +65,15 @@ it('can strip away the html', function () {
 it('can show the response only', function () {
     Visit::run('http://localhost:8282 --only-response')
         ->expectSuccess()
-        ->expectOutputContains('this is the homepage',)
-        ->expectOutputNotContains('GET http://localhost:8282',);
+        ->expectOutputContains('this is the homepage', )
+        ->expectOutputNotContains('GET http://localhost:8282', );
 });
 
 it('can show the stats only', function () {
     Visit::run('http://localhost:8282 --only-stats')
         ->expectSuccess()
-        ->expectOutputNotContains('this is the homepage',)
-        ->expectOutputContains('GET http://localhost:8282',);
+        ->expectOutputNotContains('this is the homepage', )
+        ->expectOutputContains('GET http://localhost:8282', );
 });
 
 it('can show json', function () {
@@ -82,7 +81,10 @@ it('can show json', function () {
         ->expectSuccess()
         ->expectOutputContains(
             'GET http://localhost:8282/json',
-            'first', 'value1', 'second', 'value2',
+            'first',
+            'value1',
+            'second',
+            'value2',
         );
 });
 
