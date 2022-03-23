@@ -8,11 +8,11 @@
 
 This tool can display the response of any URL. Think of it as `curl` for humans. By default, the output will be colorized. The response code and response time will be displayed after the response.
 
-![screenshot](https://spatie.github.io/visit/images/intro.png)
+![screenshot](https://github.com/spatie/visit/blob/main/docs/images/intro.png?raw=true)
 
 JSON responses will be colorized by default as well.
 
-![screenshot](https://spatie.github.io/visit/images/json.png)
+![screenshot](https://github.com/spatie/visit/blob/main/docs/images/json.png?raw=true)
 
 ## Support us
 
@@ -92,7 +92,7 @@ By default, `visit`  will not show any headers. To display them, add the `--head
 visit <your-url> /my-page --headers
 ```
 
-![screenshot](https://spatie.github.io/visit/images/headers.png)
+![screenshot](https://github.com/spatie/visit/blob/main/docs/images/headers.png?raw=true)
 
 ### Only displaying the response
 
@@ -194,7 +194,7 @@ To enable this, you must install [the spatie/laravel-visit package](https://gith
 
 To visit a route in your Laravel app, make sure you execute `visit` when the current working directory is your Laravel app. You should also use a relative URL (so omit the app URL).
 
-![screenshot](https://spatie.github.io/visit/images/relative.png)
+![screenshot](https://github.com/spatie/visit/blob/main/docs/images/relative.png?raw=true)
 
 Your can use these extra options:
 
@@ -204,11 +204,11 @@ Your can use these extra options:
 
 Here's an example of the `route` option:
 
-![screenshot](https://spatie.github.io/visit/images/laravel1.png)
+![screenshot](https://github.com/spatie/visit/blob/main/docs/images/laravel1.png?raw=true)
 
 In the stats block at the end you'll see the amount of queries and models hydrated.
 
-![screenshot](https://spatie.github.io/visit/images/laravel2.png)
+![screenshot](https://github.com/spatie/visit/blob/main/docs/images/laravel2.png?raw=true)
 
 ## Testing
 
