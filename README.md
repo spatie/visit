@@ -30,13 +30,17 @@ You can install the package via composer:
 composer global require spatie/visit
 ```
 
-To colorize HTML, you should install `bat`.
+To colorize HTML, you should install [bat](https://github.com/sharkdp/bat).
+
+On macOS you can install bat using brew.
 
 ```bash
 brew install bat
 ```
 
-To colorize JSON, you should install `jq`.
+To colorize JSON, you should install [jq](https://stedolan.github.io/jq/).
+
+On macOS you can install jq using brew.
 
 ```bash
 brew install jq
