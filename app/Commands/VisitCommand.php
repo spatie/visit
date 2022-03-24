@@ -46,12 +46,6 @@ class VisitCommand extends Command
 
     public function handle()
     {
-        if ($this->argument('url') === null) {
-            $this->displayMessage('Welcome to Visit by Spatie. Pass a URL to get started.');
-
-            return self::SUCCESS;
-        }
-
         try {
             if ($this->shouldBeHandledWithLaravelVisit()) {
                 $result = $this->handleWithLaravelVisit();
@@ -59,6 +53,12 @@ class VisitCommand extends Command
                 return $result
                     ? self::SUCCESS
                     : self::FAILURE;
+            }
+
+            if ($this->argument('url') === null) {
+                $this->displayMessage('Welcome to Visit by Spatie. Pass a URL to get started.');
+
+                return self::SUCCESS;
             }
 
             ['response' => $response, 'statResults' => $statResults, 'redirects' => $redirects] = $this->makeRequest();
