@@ -15,6 +15,7 @@ use App\Filters\Filter;
 use App\Stats\StatResult;
 use App\Stats\StatsCollection;
 use App\Support\Redirects;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use LaravelZero\Framework\Commands\Command;
@@ -68,8 +69,15 @@ class VisitCommand extends Command
             return $response->successful() || $response->redirect()
                 ? self::SUCCESS
                 : self::FAILURE;
-        } catch (RenderableException $exception) {
-            $exception->render();
+        } catch (RenderableException|ConnectionException $exception) {
+            if ($exception instanceof ConnectionException) {
+                //When hyperlinks appear in text, the background color of termwindcss will be incompatible.
+                $this->displayErrorMessage(str_replace('https://', '', $exception->getMessage()));
+
+                return self::FAILURE;
+            }
+
+            return $exception->render();
         }
 
         return self::FAILURE;
