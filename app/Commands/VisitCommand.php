@@ -71,8 +71,7 @@ class VisitCommand extends Command
                 : self::FAILURE;
         } catch (RenderableException|ConnectionException $exception) {
             if ($exception instanceof ConnectionException) {
-                //When hyperlinks appear in text, the background color of termwindcss will be incompatible.
-                $this->displayErrorMessage(str_replace('https://', '', $exception->getMessage()));
+                $this->displayErrorMessage($exception->getMessage());
 
                 return self::FAILURE;
             }
