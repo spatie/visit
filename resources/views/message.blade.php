@@ -5,6 +5,6 @@
             <span>{{ $message }}</span>
         </span>
     </div>
-    <div class="w-full {{ $headerStyle }}"></div>
+    <div class="w-full {{ $headerStyle }} max-w-100"></div>
 
 </div>

@@ -5,6 +5,7 @@ namespace App\Commands;
 use App\Colorizers\Colorizer;
 use App\Colorizers\DummyColorizer;
 use App\Concerns\DisplaysMessages;
+use App\Exceptions\CouldNotMakeRequest;
 use App\Exceptions\InvalidMethod;
 use App\Exceptions\InvalidPayload;
 use App\Exceptions\InvalidUrlSpecified;
@@ -133,8 +134,8 @@ class VisitCommand extends Command
             $response = $method === 'get'
                 ? $request->$method($url)
                 : $request->$method($url, $this->getPayload());
-        } catch (ConnectionException) {
-            throw InvalidUrlSpecified::make();
+        } catch (ConnectionException $exception) {
+            throw CouldNotMakeRequest::make($exception->getMessage());
         }
 
         $stats->callAfterRequest();
