@@ -69,13 +69,7 @@ class VisitCommand extends Command
             return $response->successful() || $response->redirect()
                 ? self::SUCCESS
                 : self::FAILURE;
-        } catch (RenderableException|ConnectionException $exception) {
-            if ($exception instanceof ConnectionException) {
-                $this->displayErrorMessage($exception->getMessage());
-
-                return self::FAILURE;
-            }
-
+        } catch (RenderableException $exception) {
             return $exception->render();
         }
 
@@ -135,9 +129,13 @@ class VisitCommand extends Command
             $request->withoutRedirecting();
         }
 
-        $response = $method === 'get'
-            ? $request->$method($url)
-            : $request->$method($url, $this->getPayload());
+        try {
+            $response = $method === 'get'
+                ? $request->$method($url)
+                : $request->$method($url, $this->getPayload());
+        } catch (ConnectionException) {
+            throw InvalidUrlSpecified::make();
+        }
 
         $stats->callAfterRequest();
 
