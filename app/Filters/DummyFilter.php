@@ -2,16 +2,16 @@
 
 namespace App\Filters;
 
-use Illuminate\Testing\TestResponse;
+use Illuminate\Http\Client\Response;
 
 class DummyFilter extends Filter
 {
-    public function canFilter(TestResponse $response, string $content): bool
+    public function canFilter(Response $response, string $content): bool
     {
         return true;
     }
 
-    public function filter(TestResponse $response, string $content, string $filter): string
+    public function filter(Response $response, string $content, string $filter): string
     {
         return $content;
     }

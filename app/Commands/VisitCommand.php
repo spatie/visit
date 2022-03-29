@@ -5,6 +5,7 @@ namespace App\Commands;
 use App\Colorizers\Colorizer;
 use App\Colorizers\DummyColorizer;
 use App\Concerns\DisplaysMessages;
+use App\Exceptions\CouldNotMakeRequest;
 use App\Exceptions\InvalidMethod;
 use App\Exceptions\InvalidPayload;
 use App\Exceptions\InvalidUrlSpecified;
@@ -15,6 +16,7 @@ use App\Filters\Filter;
 use App\Stats\StatResult;
 use App\Stats\StatsCollection;
 use App\Support\Redirects;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use LaravelZero\Framework\Commands\Command;
@@ -69,7 +71,7 @@ class VisitCommand extends Command
                 ? self::SUCCESS
                 : self::FAILURE;
         } catch (RenderableException $exception) {
-            $exception->render();
+            return $exception->render();
         }
 
         return self::FAILURE;
@@ -128,9 +130,13 @@ class VisitCommand extends Command
             $request->withoutRedirecting();
         }
 
-        $response = $method === 'get'
-            ? $request->$method($url)
-            : $request->$method($url, $this->getPayload());
+        try {
+            $response = $method === 'get'
+                ? $request->$method($url)
+                : $request->$method($url, $this->getPayload());
+        } catch (ConnectionException $exception) {
+            throw CouldNotMakeRequest::make($exception->getMessage());
+        }
 
         $stats->callAfterRequest();
 
