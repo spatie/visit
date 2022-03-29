@@ -71,7 +71,7 @@ class VisitCommand extends Command
                 ? self::SUCCESS
                 : self::FAILURE;
         } catch (RenderableException $exception) {
-            return $exception->render();
+             $exception->render();
         }
 
         return self::FAILURE;
