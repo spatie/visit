@@ -1,11 +1,11 @@
 <div class="ml-2 my-1">
     <div class="w-full {{ $headerStyle }} max-w-100"></div>
-    <div class="w-full {{ $headerStyle }} px-2 max-w-100">
-        <span class="text-left w-1/2">
+    <div class="w-full {{ $headerStyle }} px-2 max-w-100 justify-between">
+        <span>
             <span class="uppercase font-bold mr-1">{{ $method }}</span>
             <span>{{ $url }}</span>
         </span>
-        <span class="text-right w-1/2">
+        <span>
             {{ $statusCode }}
         </span>
     </div>
