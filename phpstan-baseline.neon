@@ -1,57 +1,187 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot cast Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View to string\\.$#"
+			message: "#^Method App\\\\Colorizers\\\\Colorizer\\:\\:getColorizerToolPath\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
-			path: app/Commands/Command.php
+			path: app/Colorizers/Colorizer.php
+
+		-
+			message: "#^Parameter \\#1 \\$stream of function stream_get_meta_data expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: app/Colorizers/HtmlColorizer.php
+
+		-
+			message: "#^Parameter \\#1 \\$stream of function stream_get_meta_data expects resource, resource\\|false given\\.$#"
+			count: 1
+			path: app/Colorizers/JsonColorizer.php
+
+		-
+			message: "#^Call to an undefined method Illuminate\\\\Http\\\\Client\\\\Response\\:\\:getStatusCode\\(\\)\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Cannot cast Symfony\\\\Component\\\\Console\\\\Input\\\\InputInterface to string\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Method App\\\\Commands\\\\VisitCommand\\:\\:getPayload\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Method App\\\\Commands\\\\VisitCommand\\:\\:handle\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Method App\\\\Commands\\\\VisitCommand\\:\\:renderResponse\\(\\) has parameter \\$statResults with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^PHPDoc tag @param has invalid value \\(array\\<int, StatResult \\$statResults\\)\\: Unexpected token \"\\$statResults\", expected '\\>' at offset 73$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$haystack of function str_starts_with expects string, array\\|string given\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$haystack of function str_starts_with expects string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
 
 		-
 			message: "#^Parameter \\#1 \\$html of function Termwind\\\\render expects string, Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View given\\.$#"
-			count: 1
-			path: app/Commands/Command.php
-
-		-
-			message: "#^Parameter \\#1 \\$html of function Termwind\\\\render expects string, Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View given\\.$#"
-			count: 1
-			path: app/Commands/LoginCommand.php
-
-		-
-			message: "#^Cannot cast non\\-empty\\-array\\|non\\-empty\\-string\\|true to string\\.$#"
 			count: 2
-			path: app/Commands/WatchCommand.php
+			path: app/Commands/VisitCommand.php
 
 		-
-			message: "#^Method App\\\\Commands\\\\WatchCommand\\:\\:displayWorkflows\\(\\) return type has no value type specified in iterable type App\\\\Support\\\\GitHub\\\\Entities\\\\WorkflowRunCollection\\.$#"
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, array\\|bool\\|string given\\.$#"
 			count: 1
-			path: app/Commands/WatchCommand.php
+			path: app/Commands/VisitCommand.php
 
 		-
-			message: "#^Method App\\\\Commands\\\\WatchCommand\\:\\:shouldContinueWatching\\(\\) has parameter \\$workflowRuns with no value type specified in iterable type App\\\\Support\\\\GitHub\\\\Entities\\\\WorkflowRunCollection\\.$#"
+			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
 			count: 1
-			path: app/Commands/WatchCommand.php
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of function strtolower expects string, array\\|bool\\|string given\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Parameter \\#2 \\$string of function explode expects string, array\\|string\\|null given\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Parameter \\#3 \\$filter of method App\\\\Filters\\\\Filter\\:\\:filter\\(\\) expects string, array\\|string\\|true given\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Part \\$url \\(non\\-empty\\-array\\|non\\-empty\\-string\\) of encapsed string cannot be cast to string\\.$#"
+			count: 1
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 2
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 2
+			path: app/Commands/VisitCommand.php
+
+		-
+			message: "#^Method App\\\\Exceptions\\\\RenderableException\\:\\:render\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Exceptions/RenderableException.php
 
 		-
 			message: "#^Parameter \\#1 \\$html of function Termwind\\\\render expects string, Illuminate\\\\Contracts\\\\View\\\\Factory\\|Illuminate\\\\Contracts\\\\View\\\\View given\\.$#"
 			count: 1
-			path: app/Commands/WatchCommand.php
+			path: app/Exceptions/RenderableException.php
 
 		-
-			message: "#^Method App\\\\Support\\\\ConfigRepository\\:\\:__get\\(\\) should return string\\|null but returns array\\|string\\|null\\.$#"
+			message: "#^Method App\\\\Filters\\\\JsonFilter\\:\\:filter\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
-			path: app/Support/ConfigRepository.php
+			path: app/Filters/JsonFilter.php
 
 		-
-			message: "#^Parameter \\#1 \\$key of method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:unique\\(\\) expects \\(callable\\(mixed, \\(int\\|string\\)\\)\\: bool\\)\\|string\\|null, Closure\\(App\\\\Support\\\\GitHub\\\\Entities\\\\WorkflowRun\\)\\: string given\\.$#"
+			message: "#^Strict comparison using \\=\\=\\= between bool and 'application/json' will always evaluate to false\\.$#"
 			count: 1
-			path: app/Support/GitHub/GitHub.php
+			path: app/Filters/JsonFilter.php
+
+		-
+			message: "#^Cannot call method getDuration\\(\\) on Symfony\\\\Component\\\\Stopwatch\\\\StopwatchEvent\\|null\\.$#"
+			count: 1
+			path: app/Stats/RuntimeStat.php
+
+		-
+			message: "#^Method App\\\\Stats\\\\RuntimeStat\\:\\:afterRequest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Stats/RuntimeStat.php
+
+		-
+			message: "#^Method App\\\\Stats\\\\RuntimeStat\\:\\:beforeRequest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Stats/RuntimeStat.php
+
+		-
+			message: "#^Method App\\\\Stats\\\\Stat\\:\\:afterRequest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Stats/Stat.php
+
+		-
+			message: "#^Method App\\\\Stats\\\\Stat\\:\\:beforeRequest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Stats/Stat.php
+
+		-
+			message: "#^Method App\\\\Stats\\\\StatResult\\:\\:make\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Stats/StatResult.php
+
+		-
+			message: "#^Method App\\\\Stats\\\\StatsCollection\\:\\:callAfterRequest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Stats/StatsCollection.php
+
+		-
+			message: "#^Method App\\\\Stats\\\\StatsCollection\\:\\:callBeforeRequest\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Stats/StatsCollection.php
 
 		-
 			message: "#^Unable to resolve the template type TKey in call to function collect$#"
 			count: 1
-			path: app/Support/GitHub/GitHub.php
+			path: app/Stats/StatsCollection.php
 
 		-
 			message: "#^Unable to resolve the template type TValue in call to function collect$#"
 			count: 1
-			path: app/Support/GitHub/GitHub.php
+			path: app/Stats/StatsCollection.php
+
+		-
+			message: "#^Method App\\\\Support\\\\Redirects\\:\\:add\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Support/Redirects.php
+
+		-
+			message: "#^Method App\\\\Support\\\\Redirects\\:\\:add\\(\\) has parameter \\$redirectHistoryItem with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: app/Support/Redirects.php
+
+		-
+			message: "#^Property App\\\\Support\\\\Redirects\\:\\:\\$redirects type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: app/Support/Redirects.php
 
