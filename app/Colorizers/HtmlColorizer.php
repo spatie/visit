@@ -23,4 +23,15 @@ class HtmlColorizer extends Colorizer
 
         return $process->getOutput();
     }
+
+    protected function colorizerCanExecute(): bool
+    {
+        $process = Process::fromShellCommandline("{$this->getColorizerToolPath()} --version");
+
+        $process->run();
+
+        [, $version] = explode(' ', $process->getOutput());
+
+        return $process->isSuccessful() && $version >= 0.16;
+    }
 }
