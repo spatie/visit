@@ -12,7 +12,7 @@ class JsonColorizer extends Colorizer
             return false;
         }
 
-        return $contentType === 'application/json';
+        return str_contains($contentType, 'json');
     }
 
     public function getColorizerToolName(): string
