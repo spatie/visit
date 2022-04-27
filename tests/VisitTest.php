@@ -104,6 +104,8 @@ it('can colorize output of responses with Content-Type containing json', functio
     expect($colorizer->canColorize("application/activity+json; charset=utf-8"))->toBeTrue();
     expect($colorizer->canColorize("application/json; charset=utf-8"))->toBeTrue();
     expect($colorizer->canColorize("application/activity+json;"))->toBeTrue();
+    expect($colorizer->canColorize("application/some-other-header;"))->toBeFalse();
+
 });
 
 it('can post a json payload', function () {
