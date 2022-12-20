@@ -24,6 +24,7 @@ use Soundasleep\Html2Text;
 use Spatie\GuzzleRedirectHistoryMiddleware\RedirectHistory;
 use Spatie\GuzzleRedirectHistoryMiddleware\RedirectHistoryMiddleware;
 use Symfony\Component\Process\Process;
+
 use function Termwind\{render};
 
 class VisitCommand extends Command
