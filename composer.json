@@ -19,7 +19,7 @@
         "guzzlehttp/guzzle": "^7.4",
         "illuminate/http": "^9.4",
         "illuminate/view": "^9.4",
-        "laravel-zero/framework": "^9.0",
+        "laravel-zero/framework": "dev-feature/php-8.2-box",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/termwind": "^1.7",
         "pestphp/pest": "^1.21.1",

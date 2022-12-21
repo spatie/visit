@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03c5a795c598837802998d8ac8d9e8bd",
+    "content-hash": "80ce2d25ea1c9e07829a5ceba5416cb7",
     "packages": [],
     "packages-dev": [
         {
@@ -1911,16 +1911,16 @@
         },
         {
             "name": "laravel-zero/framework",
-            "version": "v9.2.0",
+            "version": "dev-feature/php-8.2-box",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-zero/framework.git",
-                "reference": "b6c194e32031405d1aaf667d224946314806d123"
+                "reference": "b4e5615457135fc46fc23bb47e2ab0c794377e57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/b6c194e32031405d1aaf667d224946314806d123",
-                "reference": "b6c194e32031405d1aaf667d224946314806d123",
+                "url": "https://api.github.com/repos/laravel-zero/framework/zipball/b4e5615457135fc46fc23bb47e2ab0c794377e57",
+                "reference": "b4e5615457135fc46fc23bb47e2ab0c794377e57",
                 "shasum": ""
             },
             "require": {
@@ -2007,7 +2007,7 @@
                 "issues": "https://github.com/laravel-zero/laravel-zero/issues",
                 "source": "https://github.com/laravel-zero/laravel-zero"
             },
-            "time": "2022-09-29T10:29:35+00:00"
+            "time": "2022-12-20T10:11:57+00:00"
         },
         {
             "name": "league/flysystem",
@@ -7834,7 +7834,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "laravel-zero/framework": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
