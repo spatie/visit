@@ -184,6 +184,21 @@ visit <your-url> --filter="nested.secondName"
 secondValue
 ```
 
+### Ignoring SSL Errors
+
+If you want the `visit` command to bypass SSL certificate verification (useful for testing against local development
+servers with self-signed certificates), you can use the `--ignore-ssl-errors` option.
+
+```bash
+visit <your-url> --ignore-ssl-errors
+```
+
+This will allow you to make requests to endpoints with invalid or untrusted SSL certificates without the request
+failing.
+
+**Note:** Use this option carefully. Bypassing SSL verification compromises the security of your request and should only be used for testing purposes.
+
+
 ## Laravel integration
 
 The `visit` command can also reach into a Laravel app and do stuff like:
