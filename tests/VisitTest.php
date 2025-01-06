@@ -149,3 +149,9 @@ it('can display a welcome screen', function () {
         ->expectSuccess()
         ->expectOutputContains('Welcome');
 });
+
+it('can ignore SSL errors', function () {
+    Visit::run('https://localhost:8282 --ignore-ssl-errors')
+        ->expectSuccess()
+        ->expectOutputContains('GET https://localhost');
+});

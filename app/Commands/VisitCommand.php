@@ -45,6 +45,7 @@ class VisitCommand extends Command
             {--only-response}
             {--only-stats}
             {--filter=}
+            {--ignore-ssl-errors}
         ';
 
     public function handle()
@@ -129,6 +130,10 @@ class VisitCommand extends Command
 
         if (! $this->option('follow-redirects')) {
             $request->withoutRedirecting();
+        }
+
+        if ($this->option('ignore-ssl-errors')) {
+            $request->withOptions(['verify' => false]);
         }
 
         try {
